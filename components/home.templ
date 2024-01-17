@@ -17,11 +17,19 @@ templ GetSitesButton() {
 }
 
 templ Sites(s []services.SiteCheck) {
-  <ul>
-   for _, site := range s {
-    <li>Site: {site.Name} URL: {site.URL} Exists: {strconv.FormatBool(site.Exists)}</li>
-   } 
-  </ul>
+  <section style="margin-right: 25px">
+    <header>Search Results</header>
+    <div class="terminal-timeline">
+    for _, site := range s {
+      <div
+        class="terminal-card"
+      >
+      <header>{site.Name}</header>
+        <div>URL: {site.URL} <br/> Exists: {strconv.FormatBool(site.Exists)} <br/></div>
+      </div>
+    } 
+    </div>
+  </section>
 }
 
 templ Home() {  

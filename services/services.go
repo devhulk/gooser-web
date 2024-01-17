@@ -66,21 +66,42 @@ func CheckSites(w WhatsMyName, u string) ([]SiteCheck, error) {
 
 			if resp.StatusCode == v.ECode {
 				color.Green("Hit: %v\n", uri)
-				check := SiteCheck{
-					Name:   v.Name,
-					URL:    uri,
-					Exists: true,
+				if v.Name == "YouTube User2" {
+					check := SiteCheck{
+						Name:   "YouTube",
+						URL:    uri,
+						Exists: true,
+					}
+					s = append(s, check)
+				} else {
+					check := SiteCheck{
+						Name:   v.Name,
+						URL:    uri,
+						Exists: true,
+					}
+					s = append(s, check)
 				}
-				s = append(s, check)
 
 			} else if resp.StatusCode == v.MCode {
 				color.Red("Miss: %v\n", uri)
-				check := SiteCheck{
-					Name:   v.Name,
-					URL:    uri,
-					Exists: false,
+				if v.Name == "YouTube User2" {
+					check := SiteCheck{
+						Name:   "YouTube",
+						URL:    uri,
+						Exists: false,
+					}
+
+					s = append(s, check)
+
+				} else {
+					check := SiteCheck{
+						Name:   v.Name,
+						URL:    uri,
+						Exists: false,
+					}
+					s = append(s, check)
+
 				}
-				s = append(s, check)
 				continue
 			}
 
